@@ -32,4 +32,4 @@ admin.site.register(ListingSite, InviteAdmin)
 admin.site.register(LogEntry, LogEntryAdmin)
 admin.site.unregister(Group)
 
-admin.site.site_header = admin.site.site_title = admin.site.index_title = 'Minato Namikaze | Invite Stats'
+admin.site.site_header = admin.site.site_title = admin.site.index_title = 'Hatsune Miku | Invite Stats'
