@@ -29,7 +29,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
-ROOT_URLCONF = 'minatoinvite.urls'
+ROOT_URLCONF = 'mikuinvite.urls'
 
 TEMPLATES = [
     {
@@ -47,7 +47,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'minatoinvite.wsgi.application'
+WSGI_APPLICATION = 'mikuinvite.wsgi.application'
 
 dotenv_file = BASE_DIR / ".env"
 if os.path.isfile(dotenv_file):
