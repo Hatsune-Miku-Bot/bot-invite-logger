@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +51,7 @@ WSGI_APPLICATION = 'minatoinvite.wsgi.application'
 
 dotenv_file = BASE_DIR / ".env"
 if os.path.isfile(dotenv_file):
+    import dotenv
     dotenv.load_dotenv(dotenv_file)
 
     PRODUCTION_SERVER = False
@@ -65,16 +65,18 @@ if os.path.isfile(dotenv_file):
         }
     }
 else:
+    import dj_database_url
+
     PRODUCTION_SERVER = True
     DEBUG = False
     SECRET_KEY = os.environ.get('SECRET_KEY','SECRET_KEY')
     
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'production.sqlite3',
-        }
-    }
+    DATABASES = {'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'))}
+    MIDDLEWARE = [MIDDLEWARE[0]] + \
+        ['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
+    INSTALLED_APPS = INSTALLED_APPS[0:-1] + \
+        ['whitenoise.runserver_nostatic',]+[INSTALLED_APPS[-1]]
     
 
 
