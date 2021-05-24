@@ -1,1 +1,1 @@
-web: gunicorn minatoinvite.wsgi
+web: gunicorn mikuinvite.wsgi
