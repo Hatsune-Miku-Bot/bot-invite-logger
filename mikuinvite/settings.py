@@ -55,7 +55,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
     PRODUCTION_SERVER = False
-    DEBUG = False
+    DEBUG = True
     SECRET_KEY = '7$xw$^&2rne%#gqm!-n!y$%!7*uahe1cmnc!8hd3j+=syy3=$)'
 
     DATABASES = {
@@ -112,6 +112,8 @@ USE_L10N = False
 
 USE_TZ = False
 
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
 if PRODUCTION_SERVER:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
@@ -129,4 +131,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 PASSWORD = os.environ.get('PASSWORD')
+TOKEN = os.environ['TOKEN']
 
+BASE_URI = 'https://discord.com/api/v8'
