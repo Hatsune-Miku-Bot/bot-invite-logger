@@ -22,9 +22,15 @@ def discord_api_req(
             json=data
         )
     if method == 'get':
-        request = requests.get(
-            base_api+path,
-            headers=headers,
-            params=data
-        )
+        if data:
+            request = requests.get(
+                base_api+path,
+                headers=headers,
+            )
+        else:
+            request = requests.get(
+                base_api+path,
+                headers=headers,
+                params=data
+            )
     return request

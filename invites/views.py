@@ -1,13 +1,10 @@
 from django.conf import settings
 from django.db.models import F
-from django.http import (HttpResponsePermanentRedirect, HttpResponseNotAllowed)
-from django.shortcuts import redirect, render
+from django.http import HttpResponseNotAllowed, HttpResponsePermanentRedirect
+from django.shortcuts import render
 from django.views.decorators.http import require_GET
 
 from .models import *
-
-
-
 
 
 # Create your views here.

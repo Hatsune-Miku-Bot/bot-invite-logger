@@ -1,6 +1,6 @@
+import ast
 import os
 from pathlib import Path
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -133,5 +133,6 @@ MEDIA_URL = '/media/'
 
 PASSWORD = os.environ.get('PASSWORD')
 TOKEN = os.environ['TOKEN']
+LOCAL = ast.literal_eval(os.environ.get('LOCAL', False))
 
 BASE_URI = 'https://discord.com/api/v8'
