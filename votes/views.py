@@ -15,7 +15,7 @@ def message(request):
 
 @require_POST
 def topgg(request):
-    if request.META['HTTP_AUTHORIZATION'] == settings.PASSWORD:
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('user')
         message_me(userid, 'Top.GG')
         return HttpResponse('Thanks')
@@ -24,7 +24,7 @@ def topgg(request):
 
 @require_POST
 def discordbotlist(request):
-    if request.META['HTTP_AUTHORIZATION'] == settings.PASSWORD:
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('id')
         message_me(userid, 'Discord Bot List')
         return HttpResponse('Thanks')
@@ -33,7 +33,7 @@ def discordbotlist(request):
 
 @require_POST
 def discordboats(request):
-    if request.META['HTTP_AUTHORIZATION'] == settings.PASSWORD:
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('user').get('id')
         message_me(userid, 'Discord Boats')
         return HttpResponse('Thanks')
@@ -42,7 +42,7 @@ def discordboats(request):
 
 @require_POST
 def botsfordiscord(request):
-    if request.META['HTTP_AUTHORIZATION'] == settings.PASSWORD:
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('user')
         message_me(userid, 'Bots For Discord')
         return HttpResponse('Thanks')
@@ -51,7 +51,7 @@ def botsfordiscord(request):
 
 @require_POST
 def discordlistspace(request):
-    if request.META['HTTP_AUTHORIZATION'] == settings.TOKEN:
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.TOKEN:
         userid = request.POST.get('user').get('id')
         message_me(userid, 'Discordlist Space')
         return HttpResponse('Thanks')
@@ -60,7 +60,7 @@ def discordlistspace(request):
 
 @require_POST
 def fateslist(request):
-    if request.META['HTTP_AUTHORIZATION'] == settings.PASSWORD:
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('id')
         message_me(userid, 'Fates List')
         return HttpResponse('Thanks')
@@ -69,7 +69,7 @@ def fateslist(request):
 
 @require_POST
 def bladebotlist(request):
-    if request.META['HTTP_AUTHORIZATION'] == settings.PASSWORD:
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('userid')
         message_me(userid, 'Blade Bot List')
         return HttpResponse('Thanks')
@@ -78,7 +78,7 @@ def bladebotlist(request):
 
 @require_POST
 def voidbots(request):
-    if request.META['HTTP_AUTHORIZATION'] == settings.PASSWORD:
+    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('user')
         message_me(userid, 'Void Bots')
         return HttpResponse('Thanks')
