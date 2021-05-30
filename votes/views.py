@@ -24,7 +24,8 @@ def topgg(request):
 
 @require_POST
 def discordbotlist(request):
-    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
+    print(request,request.META)
+    if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('id')
         message_me(userid, 'Discord Bot List')
         return HttpResponse('Thanks')
@@ -56,6 +57,7 @@ def discordlistspace(request):
         message_me(userid, 'Discordlist Space')
         return HttpResponse('Thanks')
     else:
+        print(request.META)
         return HttpResponseNotAllowed(['GET','POST'])
 
 @require_POST
