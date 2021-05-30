@@ -11,6 +11,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'invites.apps.LoggerConfig',
+    'votes.apps.VotesConfig',
     
     'django.contrib.admin',
     'django.contrib.auth',

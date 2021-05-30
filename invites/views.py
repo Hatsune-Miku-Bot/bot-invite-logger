@@ -1,49 +1,13 @@
-from datetime import datetime
-
 from django.conf import settings
 from django.db.models import F
-from django.http import (HttpResponse, HttpResponseNotAllowed,
-                         HttpResponsePermanentRedirect)
+from django.http import (HttpResponsePermanentRedirect, HttpResponseNotAllowed)
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
-from .discord import request_discord
-from .discord.color import Color
-from .discord.embeds import Embed
-from .discord.meek_moe import meek_api
 from .models import *
 
 
-def message_me(request):
-    a = request_discord.discord_api_req(
-        '/users/@me/channels',
-        'post',
-        data={
-            'recipient_id': 571889108046184449
-        }
-    )
-    json = a.json()
-    embed=Embed(
-        title='Thanks for voting me!',
-        color=Color.random(),
-        description=f'Thanks **{json["recipients"][0]["username"]}{json["recipients"][0]["discriminator"]}** for voting me! :heart: <:45:778253031523090443>',
-        timestamp=datetime.utcnow()
-    )
-    b = request_discord.discord_api_req(
-        f'/channels/{a.json()["id"]}/messages',
-        'post',
-        data={
-            'embed':embed.to_dict()
-        }
-    )
-    request_discord.discord_api_req(
-        f'/channels/{a.json()["id"]}/messages',
-        'post',
-        data={
-            'embed':meek_api()
-        }
-    )
-    return HttpResponse('Done')
+
 
 
 # Create your views here.
