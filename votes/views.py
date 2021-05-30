@@ -24,7 +24,6 @@ def topgg(request):
 
 @require_POST
 def discordbotlist(request):
-    print(request,request.META)
     if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
         userid = request.POST.get('id')
         message_me(userid, 'Discord Bot List')
