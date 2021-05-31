@@ -64,7 +64,7 @@ def discordlistspace(request):
 @require_POST
 def fateslist(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('id')
+        userid = request.body.decode("utf-8")
         print(userid)
         message_me(int(userid), 'Fates List')
         return HttpResponse('Thanks')
