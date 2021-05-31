@@ -39,7 +39,7 @@ def message_me(voterid: int,site: str):
                 'recipient_id': int(voterid)
             }
         )
-        print(a)
+        print(a,a.json())
         json = a.json()
         user_pfp = f'https://cdn.discordapp.com/avatars/{voterid}/{json["recipients"][0]["avatar"]}.webp?size=1024'
         embed=Embed(
