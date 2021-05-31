@@ -58,7 +58,6 @@ def discordlistspace(request):
         message_me(int(userid), 'Discordlist Space')
         return HttpResponse('Thanks')
     else:
-        print(request.META)
         return HttpResponseNotAllowed(['GET','POST'])
 
 @require_POST
@@ -66,7 +65,6 @@ def fateslist(request):
     import json
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = json.loads(request.body.decode("utf-8")).get('id')
-        print(userid)
         message_me(int(userid), 'Fates List')
         return HttpResponse('Thanks')
     else:
