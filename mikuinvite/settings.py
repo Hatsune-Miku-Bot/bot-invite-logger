@@ -49,8 +49,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mikuinvite.wsgi.application'
 
-ADMINS = [('dhruva', 'dhruvashaw@gmail.com')]
-
 dotenv_file = BASE_DIR / ".env"
 if os.path.isfile(dotenv_file):
     import dotenv
@@ -75,6 +73,8 @@ else:
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    ADMINS = [('dhruva', os.environ['EMAIL_HOST_USER'])]
+
 
     PRODUCTION_SERVER = True
     DEBUG = ast.literal_eval(os.environ.get('DEBUG','False'))
