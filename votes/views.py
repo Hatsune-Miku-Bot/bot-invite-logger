@@ -54,7 +54,7 @@ def botsfordiscord(request):
 @require_POST
 def discordlistspace(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.TOKEN:
-        userid = request.POST.get('user').get('id')
+        userid = ast.literal_eval(request.body.decode("utf-8")).get('user').get('id')
         message_me(int(userid), 'Discordlist Space')
         return HttpResponse('Thanks')
     else:
