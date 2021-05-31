@@ -31,6 +31,8 @@ site_dict = {
 }
 
 def message_me(voterid: int,site: str):
+    import pytz
+    IST = pytz.timezone('Asia/Kolkata')
     try:
         a = request_discord.discord_api_req(
             '/users/@me/channels',
@@ -45,7 +47,7 @@ def message_me(voterid: int,site: str):
             title=f'Thanks for voting me! on {site}',
             color=Color.random(),
             description=f'Thanks **<@!{json["recipients"][0]["id"]}>** ({json["recipients"][0]["username"]}#{json["recipients"][0]["discriminator"]}) for voting me! :heart: <:45:778253031523090443>',
-            timestamp=datetime.utcnow()
+            timestamp=datetime.now(IST)
         )
         embed.set_author(
             name=site,
