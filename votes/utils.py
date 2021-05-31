@@ -39,6 +39,7 @@ def message_me(voterid: int,site: str):
                 'recipient_id': voterid
             }
         )
+        print(a)
         json = a.json()
         user_pfp = f'https://cdn.discordapp.com/avatars/{voterid}/{json["recipients"][0]["avatar"]}.webp?size=1024'
         embed=Embed(
@@ -80,6 +81,6 @@ def message_me(voterid: int,site: str):
             '/channels/844539081979592724/messages',
             'post',
             data={
-                'content': f'Error at vot webhook in **{e}**'
+                'content': f'Error at vote webhook in **{e}**'
             }
         )
