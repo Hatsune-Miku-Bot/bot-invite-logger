@@ -1,4 +1,5 @@
 import ast
+import json
 
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseNotAllowed
@@ -27,7 +28,7 @@ def topgg(request):
 @require_POST
 def discordbotlist(request):
     if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('id') or ast.literal_eval(request.body.decode("utf-8")).get('id')
+        userid = json.loads(request.body.decode("utf-8")).get('id')
         message_me(int(userid), 'Discord Bot List')
         return HttpResponse('Thanks')
     else:
@@ -62,7 +63,6 @@ def discordlistspace(request):
 
 @require_POST
 def fateslist(request):
-    import json
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         userid = json.loads(request.body.decode("utf-8")).get('id')
         message_me(int(userid), 'Fates List')
