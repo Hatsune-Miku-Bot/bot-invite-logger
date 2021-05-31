@@ -68,7 +68,7 @@ else:
     import dj_database_url
 
     PRODUCTION_SERVER = True
-    DEBUG = False
+    DEBUG = ast.literal_eval(os.environ.get('DEBUG','False'))
     SECRET_KEY = os.environ.get('SECRET_KEY','SECRET_KEY')
     
     DATABASES = {'default': dj_database_url.config(
