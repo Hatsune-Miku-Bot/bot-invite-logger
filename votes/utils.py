@@ -31,46 +31,63 @@ site_dict = {
 }
 
 def message_me(voterid: int,site: str):
-    a = request_discord.discord_api_req(
-        '/users/@me/channels',
-        'post',
-        data={
-            'recipient_id': voterid
-        }
-    )
-    json = a.json()
-    user_pfp = f'https://cdn.discordapp.com/avatars/{voterid}/{json["recipients"][0]["avatar"]}.webp?size=1024'
-    embed=Embed(
-        title=f'Thanks for voting me! on {site}',
-        color=Color.random(),
-        description=f'Thanks **<@!{json["recipients"][0]["id"]}>** for voting me! :heart: <:45:778253031523090443>',
-        timestamp=datetime.utcnow()
-    )
-    embed.set_author(
-        name=site,
-        url=site_dict[site],
-        icon_url = list_dict[site]
-    )
-    embed.set_thumbnail(url=user_pfp)
-    
-    request_discord.discord_api_req(
-        f'/channels/{a.json()["id"]}/messages',
-        'post',
-        data={
-            'embed':embed.to_dict()
-        }
-    )
-    request_discord.discord_api_req(
-        f'/channels/{a.json()["id"]}/messages',
-        'post',
-        data={
-            'embed':meek_api()
-        }
-    )
-    request_discord.discord_api_req(
-        '/channels/848506780912058389/messages',
-        'post',
-        data={
-            'embed':embed.to_dict()
-        }
-    )
+    try:
+        a = request_discord.discord_api_req(
+            '/users/@me/channels',
+            'post',
+            data={
+                'recipient_id': voterid
+            }
+        )
+        json = a.json()
+        user_pfp = f'https://cdn.discordapp.com/avatars/{voterid}/{json["recipients"][0]["avatar"]}.webp?size=1024'
+        embed=Embed(
+            title=f'Thanks for voting me! on {site}',
+            color=Color.random(),
+            description=f'Thanks **<@!{json["recipients"][0]["id"]}>** ({json["recipients"][0]["username"]}#{json["recipients"][0]["discriminator"]}) for voting me! :heart: <:45:778253031523090443>',
+            timestamp=datetime.utcnow()
+        )
+        embed.set_author(
+            name=site,
+            url=site_dict[site],
+            icon_url = list_dict[site]
+        )
+        embed.set_thumbnail(url=user_pfp)
+        
+        request_discord.discord_api_req(
+            f'/channels/{a.json()["id"]}/messages',
+            'post',
+            data={
+                'embed':embed.to_dict()
+            }
+        )
+        request_discord.discord_api_req(
+            f'/channels/{a.json()["id"]}/messages',
+            'post',
+            data={
+                'embed':meek_api()
+            }
+        )
+        request_discord.discord_api_req(
+            '/channels/848506780912058389/messages',
+            'post',
+            data={
+                'embed':embed.to_dict()
+            }
+        )
+    except Exception as e:
+        a = request_discord.discord_api_req(
+            '/users/@me/channels',
+            'post',
+            data={
+                'recipient_id': 571889108046184449
+            }
+        )
+        json = a.json()
+        request_discord.discord_api_req(
+            '/channels/848506780912058389/messages',
+            'post',
+            data={
+                'embed':embed.to_dict()
+            }
+        )
