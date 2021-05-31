@@ -72,8 +72,11 @@ def fateslist(request):
 
 @require_POST
 def bladebotlist(request):
-    if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('userid') or ast.literal_eval(request.body.decode("utf-8")).get('userid')
+    if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
+        try:
+            userid = request.POST.get('userid') or ast.literal_eval(request.body.decode("utf-8")).get('userid')
+        except:
+            userid = json.loads(request.body.decode("utf-8")).get('userid')
         message_me(int(userid), 'Blade Bot List')
         return HttpResponse('Thanks')
     else:
