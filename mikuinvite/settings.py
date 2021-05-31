@@ -49,6 +49,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mikuinvite.wsgi.application'
 
+ADMINS = [('dhruva', 'dhruvashaw@gmail.com')]
+
 dotenv_file = BASE_DIR / ".env"
 if os.path.isfile(dotenv_file):
     import dotenv
@@ -66,6 +68,13 @@ if os.path.isfile(dotenv_file):
     }
 else:
     import dj_database_url
+    
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
     PRODUCTION_SERVER = True
     DEBUG = ast.literal_eval(os.environ.get('DEBUG','False'))
