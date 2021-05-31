@@ -76,18 +76,10 @@ def message_me(voterid: int,site: str):
             }
         )
     except Exception as e:
-        a = request_discord.discord_api_req(
-            '/users/@me/channels',
-            'post',
-            data={
-                'recipient_id': 571889108046184449
-            }
-        )
-        json = a.json()
         request_discord.discord_api_req(
-            '/channels/848506780912058389/messages',
+            '/channels/844539081979592724/messages',
             'post',
             data={
-                'embed':embed.to_dict()
+                'content': f'Error at vot webhook in **{e}**'
             }
         )
