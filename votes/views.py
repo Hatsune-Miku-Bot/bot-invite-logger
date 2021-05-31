@@ -70,7 +70,6 @@ def fateslist(request):
     else:
         return HttpResponseNotAllowed(['GET','POST'])
 
-@require_POST
 def bladebotlist(request):
     if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
         try:
