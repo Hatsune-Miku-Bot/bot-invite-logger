@@ -36,7 +36,7 @@ def message_me(voterid: int,site: str):
             '/users/@me/channels',
             'post',
             data={
-                'recipient_id': voterid
+                'recipient_id': int(voterid)
             }
         )
         print(a)
