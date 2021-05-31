@@ -1,3 +1,5 @@
+import ast
+
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.views.decorators.http import require_POST
@@ -16,8 +18,8 @@ def message(request):
 @require_POST
 def topgg(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('user')
-        message_me(userid, 'Top.GG')
+        userid = request.POST.get('user')  or ast.litera_eval(request.body.decode("utf-8")).get('user')
+        message_me(int(userid), 'Top.GG')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
@@ -25,8 +27,8 @@ def topgg(request):
 @require_POST
 def discordbotlist(request):
     if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('id')
-        message_me(userid, 'Discord Bot List')
+        userid = request.POST.get('id') or ast.litera_eval(request.body.decode("utf-8")).get('id')
+        message_me(int(userid), 'Discord Bot List')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
@@ -34,8 +36,8 @@ def discordbotlist(request):
 @require_POST
 def discordboats(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('user').get('id')
-        message_me(userid, 'Discord Boats')
+        userid = request.POST.get('user').get('id')  or ast.litera_eval(request.body.decode("utf-8")).get('user').get('id')
+        message_me(int(userid), 'Discord Boats')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
@@ -43,8 +45,8 @@ def discordboats(request):
 @require_POST
 def botsfordiscord(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('user')
-        message_me(userid, 'Bots For Discord')
+        userid = request.POST.get('user') or ast.litera_eval(request.body.decode("utf-8")).get('user')
+        message_me(int(userid), 'Bots For Discord')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
@@ -52,8 +54,8 @@ def botsfordiscord(request):
 @require_POST
 def discordlistspace(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.TOKEN:
-        userid = request.POST.get('user').get('id')
-        message_me(userid, 'Discordlist Space')
+        userid = request.POST.get('user').get('id') or ast.litera_eval(request.body.decode("utf-8")).get('user').get('id')
+        message_me(int(userid), 'Discordlist Space')
         return HttpResponse('Thanks')
     else:
         print(request.META)
@@ -62,8 +64,8 @@ def discordlistspace(request):
 @require_POST
 def fateslist(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('id')
-        message_me(userid, 'Fates List')
+        userid = request.POST.get('id') or ast.litera_eval(request.body.decode("utf-8")).get('id')
+        message_me(int(userid), 'Fates List')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
@@ -71,8 +73,8 @@ def fateslist(request):
 @require_POST
 def bladebotlist(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('userid')
-        message_me(userid, 'Blade Bot List')
+        userid = request.POST.get('userid') or ast.litera_eval(request.body.decode("utf-8")).get('userid')
+        message_me(int(userid), 'Blade Bot List')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])
@@ -80,8 +82,8 @@ def bladebotlist(request):
 @require_POST
 def voidbots(request):
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
-        userid = request.POST.get('user')
-        message_me(userid, 'Void Bots')
+        userid = request.POST.get('user')  or ast.litera_eval(request.body.decode("utf-8")).get('user')
+        message_me(int(userid), 'Void Bots')
         return HttpResponse('Thanks')
     else:
         return HttpResponseNotAllowed(['GET','POST'])

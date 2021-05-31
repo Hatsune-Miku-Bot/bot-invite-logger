@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from django.conf import settings
+
 from .discord import request_discord
 from .discord.color import Color
 from .discord.embeds import Embed
@@ -14,6 +16,17 @@ list_dict = {
     'Fates List': 'https://fateslist.xyz/static/botlisticon.webp',
     'Blade Bot List': 'https://bladebotlist.xyz/img/logo.png',
     'Void Bots': 'https://voidbots.net/assets/img/logo.png',
+    'LOCAL': 'https://i.imgur.com/vlBPK30.png'
+}
+site_dict = {
+    'Top.GG': f'https://top.gg/bot/{settings.DISCORDBOTID}',
+    'Discordlist Space': f'https://discordlist.space/bot/{settings.DISCORDBOTID}',
+    'Bots For Discord': f'https://botsfordiscord.com/bot/{settings.DISCORDBOTID}',
+    'Discord Bot List': f'https://discordbotlist.com/bots/{settings.DISCORDBOTID}',
+    'Discord Boats': f'https://discord.boats/bot/{settings.DISCORDBOTID}',
+    'Fates List': f'https://fateslist.xyz/bot/{settings.DISCORDBOTID}',
+    'Blade Bot List': f'https://bladebotlist.xyz/bot/{settings.DISCORDBOTID}',
+    'Void Bots': f'https://voidbots.net/bot/{settings.DISCORDBOTID}/',
     'LOCAL': 'https://i.imgur.com/vlBPK30.png'
 }
 
@@ -35,6 +48,7 @@ def message_me(voterid: int,site: str):
     )
     embed.set_author(
         name=site,
+        url=site_dict[site],
         icon_url = list_dict[site]
     )
     embed.set_thumbnail(url=user_pfp)

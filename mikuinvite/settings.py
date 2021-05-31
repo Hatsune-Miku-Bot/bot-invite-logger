@@ -132,6 +132,7 @@ MEDIA_URL = '/media/'
 
 PASSWORD = os.environ.get('PASSWORD')
 TOKEN = os.environ['TOKEN']
+DISCORDBOTID = os.environ.get('DISCORDBOTID',840276343946215516)
 LOCAL = ast.literal_eval(os.environ.get('LOCAL', 'False'))
 
 BASE_URI = 'https://discord.com/api/v8'

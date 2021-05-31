@@ -8,7 +8,7 @@ def discord_api_req(
     data: dict=None, 
     content_type: str = 'application/json'
 ):
-    base_api = 'https://discord.com/api'
+    base_api = 'https://discord.com/api/v8'
     headers = {
         'User-Agent': 'Hatsune Miku Bot Invite Tracker',
         'X-Ratelimit-Precision': 'millisecond',
