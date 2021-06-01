@@ -40,7 +40,11 @@ def discordboats(request):
         try:
             userid = ast.literal_eval(request.body.decode("utf-8")).get('userid')
         except:
+            pass
+        try:
             userid = json.loads(request.body.decode("utf-8")).get('userid')
+        except:
+            userid = request.POST.get('userid')
         message_me(int(userid), 'Discord Boats')
         return HttpResponse('Thanks')
     else:
@@ -74,6 +78,10 @@ def fateslist(request):
         return HttpResponseNotAllowed(['GET','POST'])
 
 def bladebotlist(request):
+    print(request.POST)
+    print(request.META)
+    print(request.headers)
+    print(request.body)
     if request.META.get('HTTP_AUTHORIZATION') or request.headers.get('Authorization') == settings.PASSWORD:
         try:
             userid = request.POST.get('userid') or ast.literal_eval(request.body.decode("utf-8")).get('userid')
