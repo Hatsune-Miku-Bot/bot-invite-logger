@@ -36,17 +36,11 @@ def discordbotlist(request):
 
 @require_POST
 def discordboats(request):
-    print(request.POST)
-    print(request.body)
-    print(request.headers)
     if request.META['HTTP_AUTHORIZATION'] or request.headers.get('Authorization') == settings.PASSWORD:
         try:
-            userid = ast.literal_eval(request.body.decode("utf-8")).get('userid')
+            userid = ast.literal_eval(request.body.decode("utf-8")).get('user').get('id')
         except:
-            try:
-                userid = json.loads(request.body.decode("utf-8")).get('userid')
-            except:
-                userid = request.POST.get('userid')
+            userid = json.loads(request.body.decode("utf-8")).get('user').get('id')
         message_me(int(userid), 'Discord Boats')
         return HttpResponse('Thanks')
     else:
